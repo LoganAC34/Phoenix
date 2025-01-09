@@ -3709,9 +3709,9 @@ class GeometryInfo(object):
             raise Exception("width can only be increased")
 
         self._rectAll.width = w
-        self._rectLabel.x = self._rectAll.x + (w - self._rectLabel.width)/2
-        self._rectIcon.x = self._rectAll.x + (w - self._rectIcon.width)/2
-        self._rectHighlight.x = self._rectAll.x + (w - self._rectHighlight.width)/2
+        self._rectLabel.x = int(self._rectAll.x + (w - self._rectLabel.width)/2)
+        self._rectIcon.x = int(self._rectAll.x + (w - self._rectIcon.width)/2)
+        self._rectHighlight.x = int(self._rectAll.x + (w - self._rectHighlight.width)/2)
 
 
 #-----------------------------------------------------------------------------
@@ -6849,7 +6849,8 @@ class UltimateListMainWindow(wx.ScrolledWindow):
                     return self.GetParent().GetItem(line), ULC_HITTEST_ONITEMCHECK
 
                 rect = self.GetLineLabelRect(line)
-
+        
+        rect = self.GetLineRect(line)
         if rect.Contains((x, y)):
             return self.GetParent().GetItem(line), ULC_HITTEST_ONITEMLABEL
 
